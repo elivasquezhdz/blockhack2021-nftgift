@@ -5,7 +5,9 @@
     padding: 10px;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
-    
+    max-width: 75%;
+    align-content: center;
+    margin:auto;
   }
 
 .grid-item {
@@ -14,11 +16,12 @@
     padding: 10px;
     font-size: 30px;
     text-align: center;
+    align-content: center;
   }
 
   img {
     margin-top: 10px;
-    max-width: 100%;
+    max-width: 75%;
     width: 75%;
     max-height: 200px;
   }
@@ -26,4 +29,9 @@
   button {
     margin: 35px;
       
+  }
+
+  h1 {
+      font-size: 50px;
+      text-align: center;
   }
