@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script charset="utf-8"
+        src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+        type="text/javascript">
+    </script>
+    <link rel="stylesheet" href="static/NFTGIFT.css">
+    
+
+    <h1> NFT Gifts</h1>
+    <div class="grid-container">
+        <div class="grid-item">
+            <img src="static/Crypto Currency_Icon.jpg" alt="Cryptocurrency Icon">
+           
+                <button onclick="hi()">Cryptocurrency</button>
+           
+        </div>
+        <div class="grid-item">
+            <img src="static/Photo-Paint_Icon.jpg" alt="Photo/Paint Icon">
+            <a href="/photo">
+                <button>Photo</button>
+            </a>
+        </div>
+        <div class="grid-item">
+            <img src="static/Video-Film_Icon.jpg" alt="Video/Film Icon">
+            <a href="#">
+                <button onclick="hi()">Video</button>
+            </a>
+        </div>
+        <div class="grid-item">
+            <img src="static/Other Collectibles_Icon.jpg" alt="Other Collectibles Icon">
+            <a href="">
+                <button onclick="hi()">Other Collectibles</button>
+            </a>
+        </div>
+        <div class="grid-item">
+            <img src="static/Voice-Music_Icon.png" alt="Voice/Music Icon">
+            <a href="NFTGift_Video.html">
+                <button onclick="hi()">Audio</button>
+            </a>
+        </div>
+        <div class="grid-item">
+            <img src="static/Customerize_Icon.jpg" alt="Customize Icon"> 
+            <a href="NFTGift_Customize.html">
+                <button onclick="hi()">Customize</button>
+            </a>
+        </div>
+    </div>
+    <script>
+        function hi() {
+          alert("Comming soon :D We have pictures for now");
+        }
+    </script>    
+
+<script>
+    window.ethereum.enable()
+    var provider = new ethers.providers.Web3Provider(web3.currentProvider, 'ropsten');
+
+    var MoodContractAddress = "0xF09d9bAc28E94A03BD66D943Cfc950484A8B9759";
+    let MoodContractABI = [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getMood",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_mood",
+				"type": "string"
+			}
+		],
+		"name": "setMood",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+
+    provider.listAccounts().then(function (accounts) {
+      signer = provider.getSigner(accounts[0]);
+      MoodContract = new ethers.Contract(MoodContractAddress, MoodContractABI, signer);
+    })
+
+    async function getMood() {
+      getMoodPromise = MoodContract.getMood();
+      var Mood = await getMoodPromise;
+      alert("The current mood is: " + Mood);
+    }
+
+    async function setMood() {
+      mood = $("#mood").val()
+      if (mood == "") {
+        alert("Please input mood");
+      } else {
+        setMoodPromise = MoodContract.setMood(mood);
+        await setMoodPromise;
+      }
+    }
+  </script>
+
+
+</body>
+
+ 
+</html>

@@ -1,0 +1,5 @@
+flask
+gunicorn
+Flask-WTF
+Flask-Table
+flask-cors
